@@ -40,7 +40,7 @@ app.put("/repositories/:id", (request, response) => {
     title,
     url,
     techs,
-    like: newRepository.like,
+    likes: newRepository.likes,
   };
 
   newRepository = repository;
