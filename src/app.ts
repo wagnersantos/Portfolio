@@ -1,16 +1,24 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
-const { uuid } = require("uuidv4");
+import { uuid } from "uuidv4";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-const repositories = [];
+interface CreateRepositories {
+  id?: string;
+  title: string;
+  url: string;
+  techs: string[];
+  likes?: number;
+}
 
-const findIndex = (id) => repositories.findIndex((e) => e.id === id);
+const repositories: CreateRepositories[] = [];
+
+const findIndex = (id: string) => repositories.findIndex((e) => e.id === id);
 
 app.get("/repositories", (request, response) => {
   return response.json(repositories);
@@ -81,4 +89,4 @@ app.post("/repositories/:id/like", (request, response) => {
   return response.json(repository);
 });
 
-module.exports = app;
+export default app;
